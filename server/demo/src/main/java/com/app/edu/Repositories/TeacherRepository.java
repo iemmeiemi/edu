@@ -1,19 +1,19 @@
 package com.app.edu.Repositories;
 
 import com.app.edu.Models.Account;
+import com.app.edu.Models.Student;
+import com.app.edu.Models.Teacher;
 import org.springframework.data.repository.Repository;
-
 import java.util.Optional;
 import java.util.UUID;
 
 
-public interface AccountRepository extends Repository<Account, UUID> {
+public interface TeacherRepository extends Repository<Teacher, UUID> {
 
-    Account save(Account acc);
+    Teacher save(Teacher stu);
     Boolean existsByEmail(String email);
 
+    Optional<Teacher> findByEmail(String email);
 
-    Optional<Account> findByEmail(String email);
-
-//    Optional<Account> findById(long id);
 }
+

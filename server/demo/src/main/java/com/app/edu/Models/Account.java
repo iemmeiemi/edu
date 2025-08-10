@@ -1,15 +1,9 @@
 package com.app.edu.Models;
 
-import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
-import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "accounts")
@@ -35,6 +29,9 @@ public class Account {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "acc", cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<HomeRoom> homerooms = new ArrayList<>();
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -142,5 +139,13 @@ public class Account {
 
     public void setDeletedAt(LocalDateTime deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    public List<HomeRoom> getHomerooms() {
+        return homerooms;
+    }
+
+    public void setHomerooms(List<HomeRoom> homerooms) {
+        this.homerooms = homerooms;
     }
 }

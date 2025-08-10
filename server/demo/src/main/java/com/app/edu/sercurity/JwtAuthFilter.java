@@ -1,6 +1,7 @@
 package com.app.edu.sercurity;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.function.HandlerFilterFunction;
 import org.springframework.web.servlet.function.HandlerFunction;
 import org.springframework.web.servlet.function.ServerRequest;
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.function.ServerResponse;
 
 import java.util.List;
 
+@Component
 public class JwtAuthFilter implements HandlerFilterFunction<ServerResponse, ServerResponse> {
 
     private final JwtUtils jwtUtils;
@@ -52,6 +54,7 @@ public class JwtAuthFilter implements HandlerFilterFunction<ServerResponse, Serv
                 if (!roles.contains(requiredRole)) {
                     return ServerResponse.status(HttpStatus.FORBIDDEN).build();
                 }
+
                 return next.handle(request);
             } catch (Exception e) {
                 return ServerResponse.status(HttpStatus.UNAUTHORIZED).build();

@@ -1,18 +1,20 @@
 package com.app.edu.Controllers.Auth;
 
-
 import com.app.edu.Services.Auth.AuthService;
 import com.app.edu.dtos.ApiResponseDto;
 import com.app.edu.dtos.Auth.CreateAccountRequest;
+import com.app.edu.dtos.Auth.LoginAccountResponse;
 import com.app.edu.dtos.Auth.LoginEmailRequest;
+import com.app.edu.dtos.Auth.RefreshAccessTokenRequest;
 import com.app.edu.dtos.RequestValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
 
-@Component
+@Controller
 public class AuthController {
     private final RequestValidator requestValidator;
     private final AuthService services;
@@ -37,11 +39,23 @@ public class AuthController {
         }
     }
 
-    public ServerResponse loginByEmailAndPass(ServerRequest request) {
+    public ServerResponse loginWithEmailAndPass(ServerRequest request) {
         try {
             LoginEmailRequest acc = request.body(LoginEmailRequest.class);
             requestValidator.validate(acc);
             return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(services.loginWithEmail(acc));
+        } catch (Exception e) {
+            return ServerResponse.status(HttpStatus.UNAUTHORIZED)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(new ApiResponseDto( e.getMessage(), null));
+        }
+    }
+
+    public ServerResponse refreshToken(ServerRequest request) {
+        try {
+            RefreshAccessTokenRequest req = request.body(RefreshAccessTokenRequest.class);
+            LoginAccountResponse res = services.refreshAccessToken(req);
+            return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(new ApiResponseDto("Refreshed", res));
         } catch (Exception e) {
             return ServerResponse.status(HttpStatus.UNAUTHORIZED)
                     .contentType(MediaType.APPLICATION_JSON)
@@ -62,17 +76,7 @@ public class AuthController {
 //        }
 //    }
 
-//    public ServerResponse refreshToken(ServerRequest request) {
-//        try {
-//            RefreshAccessTokenRequest req = request.body(RefreshAccessTokenRequest.class);
-//            String accessToken = services.refreshAccessToken(req.getRefreshToken());
-//            return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(new ApiResponseDto("Refreshed", accessToken));
-//        } catch (Exception e) {
-//            return ServerResponse.status(HttpStatus.UNAUTHORIZED)
-//                    .contentType(MediaType.APPLICATION_JSON)
-//                    .body(new ApiResponseDto( e.getMessage(), null));
-//        }
-//    }
+
 
 
 }

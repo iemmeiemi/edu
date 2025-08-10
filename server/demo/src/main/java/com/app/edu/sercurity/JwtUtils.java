@@ -31,9 +31,8 @@ public class JwtUtils {
                 .signWith(this.Key)                                      // key ở đây là java.security.Key
                 .compact();
     }
-    public String generateRefreshToken(HashMap<String, Object> claims, String email){
+    public String generateRefreshToken(String email){
         return Jwts.builder()
-                .setClaims(claims)                                 // thêm claims (Map<String, Object>)
                 .setSubject(email)             // đặt subject
                 .setIssuedAt(new Date(System.currentTimeMillis())) // ngày phát hành
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME*7)) // hạn token
@@ -76,7 +75,7 @@ public class JwtUtils {
     }
 
     public boolean isTokenValid(String token){
-        return (isTokenExpired(token));
+        return (!isTokenExpired(token));
     }
     public boolean isTokenExpired(String token){
         return extractClaims(token, Claims::getExpiration).before(new Date());
