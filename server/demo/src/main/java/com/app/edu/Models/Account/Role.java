@@ -13,6 +13,15 @@ public class Role {
     @Column(nullable = false, unique = true, length = 50)
     private String name;
 
+    // Role có nhiều quyền
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "role_rights",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "right_id")
+    )
+    private Set<Right> rights = new HashSet<>();
+
     public Role() {}
 
     public Role(String name) {
