@@ -1,8 +1,10 @@
+import { Toolbar } from "@mui/material";
 import React from "react";
 import { useLoaderData } from "react-router";
 
 export const Home = () => {
   const { data } = useLoaderData();
+  console.log(data);
   return (
     <div>
       {data.map((post) => (

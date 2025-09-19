@@ -1,5 +1,6 @@
 package com.app.edu.Models;
 
+import com.app.edu.Models.Account.Account;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 

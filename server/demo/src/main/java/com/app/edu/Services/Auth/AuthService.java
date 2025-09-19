@@ -1,8 +1,8 @@
 package com.app.edu.Services.Auth;
 
 
-import com.app.edu.Models.Account;
-import com.app.edu.Models.Role;
+import com.app.edu.Models.Account.Account;
+import com.app.edu.Models.Account.Role;
 import com.app.edu.Models.Student;
 import com.app.edu.Models.Teacher;
 import com.app.edu.Repositories.AccountRepository;
@@ -16,8 +16,6 @@ import com.app.edu.sercurity.JwtUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;

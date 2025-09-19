@@ -1,7 +1,7 @@
 package com.app.edu.mapper;
 
 
-import com.app.edu.Models.Account;
+import com.app.edu.Models.Account.Account;
 import com.app.edu.dtos.Auth.CreateAccountRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

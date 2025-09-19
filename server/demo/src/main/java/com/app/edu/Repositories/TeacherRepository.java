@@ -1,7 +1,5 @@
 package com.app.edu.Repositories;
 
-import com.app.edu.Models.Account;
-import com.app.edu.Models.Student;
 import com.app.edu.Models.Teacher;
 import org.springframework.data.repository.Repository;
 import java.util.Optional;
