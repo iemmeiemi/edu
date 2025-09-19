@@ -28,6 +28,7 @@ export const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:last-child td, &:last-child th": {
     border: 0,
   },
+  
 }));
 
 export const TablePagination = ({ length, total, page, totalPages }) => (

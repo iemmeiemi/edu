@@ -9,14 +9,17 @@ export const ClassMain = () => {
   let params = useParams();
   const id = params.id;
   const course = getCourseById(id);
+  console.log(course);
   const [currentClasses, setCurrentClasses] = useState(getClassById(id));
-  console.log(currentClasses)
+  
+  
+   
 
 
   return (
     <div className="horizontal-cont ">
       <PageHeader pageScope={"Lớp học"} pageName={"Danh sách Lớp học"} />
-      <ClassList  currentClass={currentClasses}/>
+      <ClassList  data={currentClasses}/>
     </div>
   );
 };
