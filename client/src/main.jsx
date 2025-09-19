@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import "./App.css";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-// import router from "./routes/Routes.jsx";
+import router from "./routes/Routes.jsx";
 import { RouterProvider } from "react-router-dom";
 import Login from "./pages/Auth/Login.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")).render(
   <CssVarsProvider theme={theme}>
     {/* <RouterProvider router={router} /> */}
     <CssBaseline>
-      <Layout />
+      <RouterProvider router={router} />
     </CssBaseline>
   </CssVarsProvider>
 );

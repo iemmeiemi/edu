@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function MenuItem({
   icon: IconComponent,
@@ -8,10 +9,13 @@ function MenuItem({
   currentPage,
   setCurrentPage,
 }) {
+  const navigate = useNavigate();
   const isSelected = currentPage === page;
   const handlePageChange = (pageName) => {
+    navigate(pageName);
     setCurrentPage(pageName);
   };
+  console.log(currentPage);
   return (
     <Box
       sx={{

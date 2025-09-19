@@ -1,21 +1,72 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { LandingLayout } from "../Layouts/LandingLayout/LandingLayout";
+// import { LandingLayout } from "../Layouts/LandingLayout/LandingLayout";
 import { Home } from "../pages/Home/Home";
-import { Register } from "../pages/Auth/Register";
-import { AuthLayout } from "../Layouts/AuthLayout/AuthLayout";
+// import { Register } from "../pages/Auth/Register";
+// import { AuthLayout } from "../Layouts/AuthLayout/AuthLayout";
 import { homeLoader } from "../pages/Home/HomeLoader";
 import { MainLayout } from "../Layouts/MainLayout/MainLayout";
-import CourseMain from "../pages/Course/List/CourseMain";
-import { CreateNewCourse } from "../pages/Course/Create/CreateNewCourse";
-import { CourseDetail } from "../pages/Course/Detailed/CourseDetail";
-import { CreateNewClass } from "../pages/Course/Create/CreateNewClass";
-import ClassList from "../pages/Course/List/ClassList";
-import { ClassMain } from "../pages/Course/List/ClassMain";
+// import CourseMain from "../pages/Course/List/CourseMain";
+// import { CreateNewCourse } from "../pages/Course/Create/CreateNewCourse";
+// import { CourseDetail } from "../pages/Course/Detailed/CourseDetail";
+// import { CreateNewClass } from "../pages/Course/Create/CreateNewClass";
+// import ClassList from "../pages/Course/List/ClassList";
+// import { ClassMain } from "../pages/Course/List/ClassMain";
+import Contact from "../pages/Home/Contact";
+import StudentLayout from "../Layouts/MainLayout/StudentLayout";
+import Dashboard from "../pages/Home/Dashboard";
+import Schedule from "../pages/Home/Schedule";
+import Study from "../pages/Home/Study";
+import Assignment from "../pages/Home/Assignment";
 
 const router = createBrowserRouter([
+  // {
+  //   path: "/",
+  //   Component: MainLayout,
+  //   children: [
+  //     {
+  //       index: true,
+  //       Component: Home,
+  //       loader: async () => {
+  //         const data = await homeLoader();
+  //         return data;
+  //       },
+  //       // action: async ({ request }) => {
+  //       //   let formData = await request.formData();
+  //       //   let title = formData.get("title");
+  //       //   let project = await someApi.updateProject({ title });
+  //       //   return project;
+  //       // },
+  //     },
+  //     // { path: "all-course", Component: CourseMain },
+  //     // {
+  //     //   path: "create-course",
+  //     //   Component: CreateNewCourse,
+  //     // },
+  //     // {
+  //     //   path: "course/:id",
+  //     //   Component: CourseDetail,
+  //     // },
+  //     // {
+  //     //   path: "create-class",
+  //     //   Component: CreateNewClass,
+  //     // },
+  //     // {
+  //     //   path: "create-class/:id",
+  //     //   Component: CreateNewClass,
+  //     // },
+  //     // {
+  //     //   path: "all-class",
+  //     //   Component: ClassMain,
+  //     // },
+  //     // {
+  //     //   path: "all-class/:id",
+  //     //   Component: ClassMain,
+  //     // },
+  //   ],
+  // },
   {
-    path: "/",
-    Component: MainLayout,
+    path: "/student/",
+    Component: StudentLayout,
     children: [
       {
         index: true,
@@ -24,38 +75,12 @@ const router = createBrowserRouter([
           const data = await homeLoader();
           return data;
         },
-        // action: async ({ request }) => {
-        //   let formData = await request.formData();
-        //   let title = formData.get("title");
-        //   let project = await someApi.updateProject({ title });
-        //   return project;
-        // },
       },
-      { path: "all-course", Component: CourseMain },
-      {
-        path: "create-course",
-        Component: CreateNewCourse,
-      },
-      {
-        path: "course/:id",
-        Component: CourseDetail,
-      },
-      {
-        path: "create-class",
-        Component: CreateNewClass,
-      },
-      {
-        path: "create-class/:id",
-        Component: CreateNewClass,
-      },
-      {
-        path: "all-class",
-        Component: ClassMain,
-      },
-      {
-        path: "all-class/:id",
-        Component: ClassMain,
-      },
+      { path: "contact", Component: Contact },
+      { path: "dashboard", Component: Dashboard },
+      { path: "schedule", Component: Schedule },
+      { path: "study", Component: Study },
+      { path: "assignment", Component: Assignment },
     ],
   },
   // {

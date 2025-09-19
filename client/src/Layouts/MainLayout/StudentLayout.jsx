@@ -10,13 +10,19 @@ import IconButton from "@mui/material/IconButton";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
+import { useTheme } from "@mui/material/styles";
 
-const drawerWidth = 240;
+export const StudentLayout = (props) => {
+  //     const theme = useTheme();
+  // const drawerWidth = theme.webSize.sizebarWidth; // phải là số, ví dụ 240
 
-export const MainLayout = (props) => {
+  const drawerWidth = "398px";
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [currentPage, setCurrentPage] = useState("contact");
+  console.log(currentPage);
+
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -82,7 +88,12 @@ export const MainLayout = (props) => {
             },
           }}
         >
-          {<Sidebar />}
+          {
+            <Sidebar
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          }
         </Drawer>
         <Drawer
           variant="permanent"
@@ -95,14 +106,19 @@ export const MainLayout = (props) => {
           }}
           open
         >
-          {Sidebar()}
+          {
+            <Sidebar
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          }
         </Drawer>
       </Box>
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          p: 1,
           width: { md: `calc(100% - ${drawerWidth}px)` },
         }}
       >
@@ -113,11 +129,11 @@ export const MainLayout = (props) => {
   );
 };
 
-MainLayout.propTypes = {
+StudentLayout.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * Remove this when copying and pasting into your project.
    */
   window: PropTypes.func,
 };
-export default MainLayout;
+export default StudentLayout;

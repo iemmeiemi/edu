@@ -7,7 +7,7 @@ function TeacherBox() {
       <Box
         sx={{
           border: "1px solid #b7b7b78f",
-          width: "28%",
+          width: "250px",
           borderRadius: "10px",
         }}
       >
