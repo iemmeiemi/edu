@@ -1,7 +1,7 @@
 package com.app.edu.Repositories;
 
 
-import com.app.edu.Models.Role;
+import com.app.edu.Models.Account.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

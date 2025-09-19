@@ -1,6 +1,5 @@
 package com.app.edu.sercurity;
 
-import com.app.edu.Models.Account;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

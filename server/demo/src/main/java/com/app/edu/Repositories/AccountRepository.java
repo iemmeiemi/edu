@@ -1,6 +1,6 @@
 package com.app.edu.Repositories;
 
-import com.app.edu.Models.Account;
+import com.app.edu.Models.Account.Account;
 import org.springframework.data.repository.Repository;
 
 import java.util.Optional;

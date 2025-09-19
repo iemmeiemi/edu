@@ -1,5 +1,6 @@
-package com.app.edu.Models;
+package com.app.edu.Models.Account;
 
+import com.app.edu.Models.HomeRoom;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

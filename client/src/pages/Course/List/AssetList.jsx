@@ -1,0 +1,63 @@
+import React from "react";
+
+import TableRow from "@mui/material/TableRow";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import Paper from "@mui/material/Paper";
+import { IoMdMore } from "react-icons/io";
+import {
+  StyledTableCell,
+  StyledTableRow,
+  TablePagination,
+} from "../../../Components/TableComponents";
+
+export default function AssetList({ data }) {
+  const truncate = (str, n) => (str.length > n ? str.slice(0, n) + "..." : str);
+  const fieldNames = Object.keys(data[0] || {});
+
+  return (
+    <div className="flex flex-col gap-4">
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left">Tên</StyledTableCell>
+              <StyledTableCell align="left">Mô tả</StyledTableCell>
+              <StyledTableCell align="left">Loại</StyledTableCell>
+              <StyledTableCell align="left"></StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data ? (data.map((c) => (
+              <StyledTableRow key={c.code}>
+                <StyledTableCell component="th" scope="row">
+                  {c.code}
+                </StyledTableCell>
+                <StyledTableCell align="left">{c.name}</StyledTableCell>
+                <StyledTableCell align="left">
+                  {truncate(c.description, 50)}
+                </StyledTableCell>
+                <StyledTableCell align="left">{c.type}</StyledTableCell>
+                <StyledTableCell align="left">
+                  <IoMdMore size={30} />
+                </StyledTableCell>
+              </StyledTableRow>
+            ))) : (
+              <StyledTableRow>
+                <p>Không có Tài liệu nào. Hãy tạo thêm!</p>
+              </StyledTableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        length={data.length}
+        total={data.total}
+        page={data.page}
+        totalPages={data.totalPages}
+      />
+    </div>
+  );
+}

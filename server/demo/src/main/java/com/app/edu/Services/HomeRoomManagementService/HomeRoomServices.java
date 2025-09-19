@@ -1,14 +1,14 @@
 package com.app.edu.Services.HomeRoomManagementService;
 
-import com.app.edu.Models.Account;
+import com.app.edu.Models.Account.Account;
 import com.app.edu.Models.HomeRoom;
 import com.app.edu.Repositories.AccountRepository;
 import com.app.edu.Repositories.HomeroomRepository;
-import com.app.edu.Utils.pagination;
 import com.app.edu.dtos.HomeRoom.CreateHomeRoomRequest;
 import com.app.edu.dtos.HomeRoom.CreateHomeRoomResponse;
 import com.app.edu.mapper.HomeRoomMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +35,8 @@ public class HomeRoomServices {
         return homeRoomMapper.toDTO(hr);
     }
 
-    public List<HomeRoom> getAll(int number, int size, String by, String direction) {
-        Page<HomeRoom> page = homeroomRepository.findAll(pagination.definePageable(number, size, by, direction));
-        return page.getContent();
+    public List<HomeRoom> getAll(Pageable page) {
+        Page<HomeRoom> homeRooms = homeroomRepository.findAll(page);
+        return homeRooms.getContent();
     }
 }
